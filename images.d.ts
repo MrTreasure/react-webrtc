@@ -1,0 +1,6 @@
+declare module '*.svg'
+declare module '*.png'
+declare module '*.jpg'
+declare module 'typescript'
+declare module 'hljs'
+declare module '*.json'
