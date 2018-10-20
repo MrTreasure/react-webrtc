@@ -5,12 +5,16 @@ import { Bind } from 'lodash-decorators'
 import * as ECharts from 'echarts'
 import ChinaCity from 'echarts/map/json/china-cities.json'
 import China from 'echarts/map/json/china.json'
+import ChinaContour from 'echarts/map/json/china-contour.json'
+import World from 'echarts/map/json/world.json'
 import ProvinceList from './provinceList.json'
 import { geoCoordMap, scatterData } from './mapData'
 import { Button, Select } from 'antd'
 
 ECharts.registerMap('china-cities', ChinaCity)
 ECharts.registerMap('china', China)
+ECharts.registerMap('china-contour', ChinaContour)
+ECharts.registerMap('world', World)
 
 ProvinceList.forEach(province => {
   const map = require('echarts/map/json/province/' + province.path)
@@ -146,6 +150,8 @@ export default class AreaChart extends React.Component {
       <div className="bt-list" style={{marginTop: '20px'}}>
         <Button style={{marginRight: 10}} onClick={() => this.handleSwitchMap('china')}>省份地图</Button>
         <Button style={{marginRight: 10}} onClick={() => this.handleSwitchMap('china-cities')}>城市地图</Button>
+        <Button style={{marginRight: 10}} onClick={() => this.handleSwitchMap('china-contour')}>中国地图</Button>
+        <Button style={{marginRight: 10}} onClick={() => this.handleSwitchMap('world')}>世界地图</Button>
         <Select style={{width: 200}} onSelect={this.handleProvinceSelect}>
           {ProvinceList.map((province: any) => <Option key={province.py}>{province.label}</Option>)}
         </Select>

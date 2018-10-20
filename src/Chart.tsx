@@ -16,7 +16,6 @@ export default class Chart extends React.Component<IProps, any> {
     this.chart = ECharts.init(this.wrap)
     this.chart.setOption(this.props.option)
     if (this.props.onclick) {
-      console.log('onclick')
       this.chart.on('click', this.props.onclick)
     }
   }
@@ -26,7 +25,6 @@ export default class Chart extends React.Component<IProps, any> {
   }
 
   public componentDidUpdate () {
-    console.log(this.chart)
     if (!this.chart) return
     this.chart.setOption(this.props.option, this.props.notMerge)
   }
