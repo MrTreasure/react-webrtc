@@ -2,9 +2,10 @@ import * as React from 'react'
 import * as ECharts from 'echarts'
 
 interface IProps {
-  option: ECharts.EChartOption
+  option: any
   height?: number
   onclick?: (event) => void
+  notMerge?: boolean
 }
 
 export default class Chart extends React.Component<IProps, any> {
@@ -15,14 +16,19 @@ export default class Chart extends React.Component<IProps, any> {
     this.chart = ECharts.init(this.wrap)
     this.chart.setOption(this.props.option)
     if (this.props.onclick) {
+      console.log('onclick')
       this.chart.on('click', this.props.onclick)
     }
   }
 
   public getSnapshotBeforeUpdate () {
-    if (!this.chart) return null
-    this.chart.setOption(this.props.option)
     return null
+  }
+
+  public componentDidUpdate () {
+    console.log(this.chart)
+    if (!this.chart) return
+    this.chart.setOption(this.props.option, this.props.notMerge)
   }
 
   public render () {
